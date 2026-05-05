@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>HireIQ — AI Resume Screening System</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/style.css?v=8">
+</head>
+<body>
+
+<!-- ══════════ LANDING PAGE ══════════ -->
+<div id="landingScreen">
+  <div class="auth-bg"></div>
+  <div class="auth-bg-grid"></div>
+  <header class="landing-header">
+    <div class="landing-logo">
+      <div class="landing-logo-icon">🎯</div>
+      <div class="landing-logo-text">Hire<span>IQ</span></div>
+    </div>
+    <nav class="landing-nav">
+      <button class="landing-nav-link" onclick="document.getElementById('landingFeatures').scrollIntoView({behavior:'smooth'})">Features</button>
+      <button class="landing-nav-link" onclick="showAboutModal()">About</button>
+      <button class="landing-nav-cta" onclick="showAuth('login')">Sign In</button>
+    </nav>
+  </header>
+  <section class="landing-hero">
+    <div class="landing-hero-badge">✨ AI-Powered Recruitment Intelligence</div>
+    <h1>Hire Smarter with<br><span>AI-Driven</span> Screening</h1>
+    <p>HireIQ analyzes resumes using NLP and TF-IDF scoring to surface the best candidates — eliminating bias and saving hours of manual review.</p>
+    <div class="landing-hero-btns">
+      <button class="landing-hero-btn-primary" onclick="showAuth('login')">🔑 Log In to HireIQ</button>
+    </div>
+  </section>
+
+  <div class="landing-preview">
+    <div class="landing-preview-frame">
+      <div class="landing-preview-bar">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+        <div class="landing-preview-url">hireiq.app/dashboard</div>
+      </div>
+      <div class="landing-preview-content">
+        <div class="lp-stat"><div class="lp-stat-num">8</div><div class="lp-stat-label">Total Resumes</div></div>
+        <div class="lp-stat"><div class="lp-stat-num">8</div><div class="lp-stat-label">Screened</div></div>
+        <div class="lp-stat"><div class="lp-stat-num" style="color:var(--yellow)">1</div><div class="lp-stat-label">Shortlisted</div></div>
+        <div class="lp-stat"><div class="lp-stat-num" style="color:var(--accent3)">3</div><div class="lp-stat-label">Active Jobs</div></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="landing-features" id="landingFeatures">
+    <div class="landing-section-label">Capabilities</div>
+    <div class="landing-section-title">Everything You Need to Hire Right</div>
+    <div class="landing-section-sub">From upload to shortlist in minutes — powered by real machine learning.</div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <div class="feature-title">AI Resume Parsing</div>
+        <div class="feature-desc">Automatically extract skills, experience, education and certifications from any resume format.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧮</div>
+        <div class="feature-title">TF-IDF Scoring</div>
+        <div class="feature-desc">Match candidates to job descriptions using cosine similarity and weighted skill scoring.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">Candidate Ranking</div>
+        <div class="feature-desc">Rank all applicants by composite score — skill match, experience, education and keywords.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <div class="feature-title">Bias Detection</div>
+        <div class="feature-desc">Ensure fair evaluations with built-in demographic parity checks and audit trails.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚖️</div>
+        <div class="feature-title">Custom Weights</div>
+        <div class="feature-desc">Tune scoring criteria to match your hiring priorities — weight skills over education, or vice versa.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📈</div>
+        <div class="feature-title">Pipeline Insights</div>
+        <div class="feature-desc">Track hiring velocity, skill gaps and shortlist trends across all your active job roles.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="landing-footer">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="landing-logo-icon" style="width:28px;height:28px;font-size:14px;">🎯</div>
+      <span style="font-family:var(--font-head);font-weight:700;color:var(--text2)">HireIQ</span>
+    </div>
+    <div>© 2026 HireIQ — AI Resume Screening System</div>
+    <div style="display:flex;gap:16px;">
+      <span style="cursor:pointer;hover:color:var(--text)">Privacy</span>
+      <span style="cursor:pointer;">Terms</span>
+      <span style="cursor:pointer;">Support</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════ AUTH SCREEN ══════════ -->
+<div id="authScreen" class="hidden">
+  <div class="auth-bg"></div>
+  <div class="auth-bg-grid"></div>
+  <div class="auth-container">
+    <!-- Left branding panel -->
+    <div class="auth-left">
+      <div>
+        <div class="auth-brand">
+          <div class="auth-brand-icon">🎯</div>
+          <div class="auth-brand-name">Hire<span>IQ</span></div>
+        </div>
+        <div class="auth-tagline">Your AI hiring<br>partner — <em>built for speed.</em></div>
+        <div class="auth-desc" style="margin-top:16px;">Screen dozens of resumes in seconds. Rank candidates by skill match, experience, and cultural fit.</div>
+      </div>
+      <div class="auth-features">
+        <div class="auth-feat"><div class="auth-feat-icon">🤖</div>NLP-powered resume parsing & scoring</div>
+        <div class="auth-feat"><div class="auth-feat-icon">⚡</div>Screen 100+ resumes in under 30 seconds</div>
+        <div class="auth-feat"><div class="auth-feat-icon">🛡️</div>Built-in bias detection & audit trails</div>
+        <div class="auth-feat"><div class="auth-feat-icon">📊</div>Detailed candidate ranking with breakdowns</div>
+      </div>
+      <div class="auth-stats-row">
+        <div class="auth-stat"><div class="auth-stat-num">10k+</div><div class="auth-stat-label">Resumes Processed</div></div>
+        <div class="auth-stat"><div class="auth-stat-num">98%</div><div class="auth-stat-label">Accuracy Rate</div></div>
+        <div class="auth-stat"><div class="auth-stat-num">4.9★</div><div class="auth-stat-label">User Rating</div></div>
+      </div>
+    </div>
+
+    <!-- Right form panel -->
+    <div class="auth-right">
+      <div class="auth-card">
+        <div class="auth-tab-row">
+          <button class="auth-tab active" id="loginTab" onclick="switchAuthTab('login')">Log In</button>
+          <button class="auth-tab" id="signupTab" onclick="switchAuthTab('signup')">Sign Up</button>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div id="loginForm" autocomplete="on">
+          <div class="auth-form-title">Welcome back 👋</div>
+          <div class="auth-form-sub">Log in to your HireIQ account</div>
+          <div class="auth-error" id="loginError"></div>
+          <div class="auth-field">
+            <label class="auth-label">Email Address</label>
+            <input class="auth-input" id="loginEmail" type="email" placeholder="hr@company.com" value="hr@hireiq.com" autocomplete="email"/>
+          </div>
+          <div class="auth-field">
+            <label class="auth-label">Password</label>
+            <input class="auth-input" id="loginPassword" type="password" placeholder="••••••••" value="password123" autocomplete="current-password"/>
+          </div>
+          <button class="auth-btn" onclick="handleLogin()">Log In →</button>
+          <div class="auth-switch">
+            Don't have an account? <a onclick="switchAuthTab('signup')">Sign up here</a>
+          </div>
+        </div>
+
+        <!-- SIGNUP FORM -->
+        <div id="signupForm" style="display:none" autocomplete="off">
+          <div class="auth-form-title">Create account ✨</div>
+          <div class="auth-form-sub">Start screening smarter — free forever</div>
+          <div class="auth-error" id="signupError"></div>
+          <!-- Honeypot fields to prevent Chrome autofill -->
+          <input type="text" style="display:none" aria-hidden="true" tabindex="-1">
+          <input type="password" style="display:none" aria-hidden="true" tabindex="-1">
+          <div class="auth-field">
+            <label class="auth-label">Full Name</label>
+            <input class="auth-input" id="signupName" type="text" placeholder="Sarah Johnson" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" value=""/>
+          </div>
+          <div class="auth-field">
+            <label class="auth-label">Work Email</label>
+            <input class="auth-input" id="signupEmail" type="text" placeholder="sarah@company.com" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')" value=""/>
+          </div>
+          <div class="auth-field">
+            <label class="auth-label">Password</label>
+            <input class="auth-input" id="signupPassword" type="password" placeholder="Min. 8 characters" autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly')" value=""/>
+          </div>
+          <button class="auth-btn" onclick="handleSignup()">Create My Account →</button>
+          <div class="auth-switch">
+            Already have an account? <a onclick="switchAuthTab('login')">Log in here</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Back to landing -->
+  <button onclick="showLanding()" style="position:absolute;top:20px;left:20px;background:var(--card-bg);border:1px solid var(--border);color:var(--text2);padding:8px 14px;border-radius:var(--radius-sm);cursor:pointer;font-size:13px;z-index:10;">← Back</button>
+</div>
+
+<!-- ══════════ ABOUT MODAL ══════════ -->
+<div id="aboutModal" onclick="if(event.target===this)closeAboutModal()" style="position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.65);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:20px;width:680px;max-width:96vw;max-height:88vh;overflow-y:auto;box-shadow:0 32px 80px rgba(0,0,0,0.6);position:relative;">
+
+    <!-- Header -->
+    <div style="padding:36px 40px 0;text-align:center;background:linear-gradient(180deg,rgba(108,99,255,0.1) 0%,transparent 100%);border-radius:20px 20px 0 0;">
+      <div style="width:72px;height:72px;border-radius:20px;background:linear-gradient(135deg,var(--accent),var(--accent3));display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 16px;box-shadow:0 8px 32px rgba(108,99,255,0.4);">🎯</div>
+      <div style="font-family:var(--font-head);font-size:32px;font-weight:800;letter-spacing:-0.5px;">Hire<span style="color:var(--accent2)">IQ</span></div>
+      <div style="color:var(--text3);font-size:13px;margin-top:4px;letter-spacing:0.05em;text-transform:uppercase;font-weight:600;">AI Resume Screening System</div>
+      <div style="display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:5px 14px;border-radius:20px;background:rgba(108,99,255,0.12);border:1px solid rgba(108,99,255,0.25);color:var(--accent2);font-size:12px;font-weight:600;">✨ Version 2.0 — Capstone Project</div>
+    </div>
+
+    <!-- Body -->
+    <div style="padding:32px 40px 40px;">
+
+      <!-- What is it -->
+      <div style="margin-bottom:28px;">
+        <div style="font-family:var(--font-head);font-size:18px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px;">🤖 What is HireIQ?</div>
+        <div style="color:var(--text2);font-size:14px;line-height:1.75;">
+          HireIQ is an <strong style="color:var(--text)">AI-powered Resume Screening &amp; Candidate Ranking System</strong> built as a Major Capstone Project for the Artificial Intelligence internship at LaunchED. It automates the tedious process of manually reviewing resumes — analysing each candidate against a job description and ranking them by relevance using real NLP techniques.
+        </div>
+      </div>
+
+      <!-- How it works -->
+      <div style="margin-bottom:28px;">
+        <div style="font-family:var(--font-head);font-size:18px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px;">⚙️ How It Works</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:16px;">
+            <div style="font-size:20px;margin-bottom:8px;">📄</div>
+            <div style="font-weight:700;font-size:13px;margin-bottom:4px;">1. Upload Resumes</div>
+            <div style="color:var(--text3);font-size:12px;line-height:1.6;">Upload PDF, DOCX, or TXT resumes. The system parses each file and extracts skills, experience, education, and certifications.</div>
+          </div>
+          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:16px;">
+            <div style="font-size:20px;margin-bottom:8px;">💼</div>
+            <div style="font-weight:700;font-size:13px;margin-bottom:4px;">2. Set a Job Description</div>
+            <div style="color:var(--text3);font-size:12px;line-height:1.6;">Create a job description with required skills and keywords. This becomes the target profile the AI matches candidates against.</div>
+          </div>
+          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:16px;">
+            <div style="font-size:20px;margin-bottom:8px;">🧮</div>
+            <div style="font-weight:700;font-size:13px;margin-bottom:4px;">3. AI Scoring (TF-IDF)</div>
+            <div style="color:var(--text3);font-size:12px;line-height:1.6;">Each resume is scored using TF-IDF + Cosine Similarity across five weighted dimensions: Skill Match, Experience, Education, Keywords, and Certifications.</div>
+          </div>
+          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:16px;">
+            <div style="font-size:20px;margin-bottom:8px;">🏆</div>
+            <div style="font-weight:700;font-size:13px;margin-bottom:4px;">4. Ranked Results</div>
+            <div style="color:var(--text3);font-size:12px;line-height:1.6;">Candidates are ranked by composite score. Choose to display Top 3, 5, 10, or All. Shortlist the best fits and export as CSV or PDF.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech Stack -->
+      <div style="margin-bottom:28px;">
+        <div style="font-family:var(--font-head);font-size:18px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;">🛠️ Technologies Used</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span style="padding:5px 12px;background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.2);border-radius:20px;font-size:12px;font-weight:600;color:var(--accent2)">HTML5</span>
+          <span style="padding:5px 12px;background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.2);border-radius:20px;font-size:12px;font-weight:600;color:var(--accent2)">CSS3 (Custom Properties)</span>
+          <span style="padding:5px 12px;background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.2);border-radius:20px;font-size:12px;font-weight:600;color:var(--accent2)">Vanilla JavaScript</span>
+          <span style="padding:5px 12px;background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.2);border-radius:20px;font-size:12px;font-weight:600;color:var(--accent2)">TF-IDF Algorithm</span>
+          <span style="padding:5px 12px;background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.2);border-radius:20px;font-size:12px;font-weight:600;color:var(--accent2)">Cosine Similarity</span>
+          <span style="padding:5px 12px;background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.2);border-radius:20px;font-size:12px;font-weight:600;color:var(--accent2)">NLP Preprocessing</span>
+          <span style="padding:5px 12px;background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.2);border-radius:20px;font-size:12px;font-weight:600;color:var(--accent2)">Responsive Design</span>
+          <span style="padding:5px 12px;background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.2);border-radius:20px;font-size:12px;font-weight:600;color:var(--accent2)">PDF / CSV Export</span>
+        </div>
+      </div>
+
+      <!-- Key Features -->
+      <div style="margin-bottom:28px;">
+        <div style="font-family:var(--font-head);font-size:18px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;">✨ Key Features</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:var(--bg3);border-radius:10px;">
+            <span style="font-size:18px;margin-top:1px">🤖</span>
+            <div><div style="font-weight:700;font-size:13px">AI Resume Parsing</div><div style="color:var(--text3);font-size:12px;margin-top:2px">Automatically extracts skills, experience, education from any resume</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:var(--bg3);border-radius:10px;">
+            <span style="font-size:18px;margin-top:1px">⚖️</span>
+            <div><div style="font-weight:700;font-size:13px">Custom Scoring Weights</div><div style="color:var(--text3);font-size:12px;margin-top:2px">Adjust how much each dimension (skills, exp, education) contributes to the final score</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:var(--bg3);border-radius:10px;">
+            <span style="font-size:18px;margin-top:1px">🛡️</span>
+            <div><div style="font-weight:700;font-size:13px">Bias Detection</div><div style="color:var(--text3);font-size:12px;margin-top:2px">Built-in fairness audit — flags potential demographic bias in screening results</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:var(--bg3);border-radius:10px;">
+            <span style="font-size:18px;margin-top:1px">📊</span>
+            <div><div style="font-weight:700;font-size:13px">Insights Dashboard</div><div style="color:var(--text3);font-size:12px;margin-top:2px">Visual analytics on candidate quality, skill gaps, and hiring pipeline activity</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:var(--bg3);border-radius:10px;">
+            <span style="font-size:18px;margin-top:1px">⭐</span>
+            <div><div style="font-weight:700;font-size:13px">Shortlist Management</div><div style="color:var(--text3);font-size:12px;margin-top:2px">Save your top candidates to a dedicated shortlist page; export to CSV</div></div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 14px;background:var(--bg3);border-radius:10px;">
+            <span style="font-size:18px;margin-top:1px">🌙</span>
+            <div><div style="font-weight:700;font-size:13px">Dark &amp; Light Mode</div><div style="color:var(--text3);font-size:12px;margin-top:2px">Full theme switching — dark mode by default, light mode available in settings</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Info -->
+      <div style="background:linear-gradient(135deg,rgba(108,99,255,0.08),rgba(56,189,248,0.06));border:1px solid rgba(108,99,255,0.2);border-radius:14px;padding:20px 24px;">
+        <div style="font-family:var(--font-head);font-size:15px;font-weight:700;margin-bottom:10px;">📋 Project Details</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px;">
+          <div><span style="color:var(--text3)">Project Type:</span> <span style="color:var(--text);font-weight:500">AI Capstone — Option 2</span></div>
+          <div><span style="color:var(--text3)">Domain:</span> <span style="color:var(--text);font-weight:500">Artificial Intelligence</span></div>
+          <div><span style="color:var(--text3)">Organisation:</span> <span style="color:var(--text);font-weight:500">LaunchED Global</span></div>
+          <div><span style="color:var(--text3)">Stack:</span> <span style="color:var(--text);font-weight:500">Pure HTML / CSS / JS</span></div>
+        </div>
+        <div style="margin-top:12px;color:var(--text3);font-size:12px;line-height:1.6;">
+          This project demonstrates strong conceptual understanding, technical implementation, and practical application of AI/NLP techniques as required by the LaunchED AI Capstone Project guidelines.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Header -->
+    <button onclick="closeAboutModal()" style="position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);color:var(--text3);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text3)'">✕</button>
+  </div>
+</div>
+
+<!-- ══════════ PROFILE MODAL ══════════ -->
+<div class="profile-modal-overlay" id="profileModal" onclick="if(event.target===this)closeProfileModal()">
+  <div class="profile-modal">
+    <div class="profile-modal-header">
+      <div class="profile-avatar-lg" id="pmAvatar">HR</div>
+      <div class="profile-name" id="pmName">HR Manager</div>
+      <div class="profile-role" id="pmRole">Admin • HireIQ</div>
+      <div class="profile-plan">⚡ Pro Plan</div>
+    </div>
+    <div class="profile-modal-body">
+      <div class="profile-menu-item" onclick="closeProfileModal();openSettingsModal()">
+        <span class="pm-icon">⚙️</span> Account Settings
+      </div>
+      <div class="profile-menu-item" onclick="closeProfileModal();navigate('weights', document.querySelector('[data-page=weights]'))">
+        <span class="pm-icon">⚖️</span> Scoring Weights
+      </div>
+      <div class="profile-menu-item" onclick="closeProfileModal();navigate('bias', document.querySelector('[data-page=bias]'))">
+        <span class="pm-icon">🛡️</span> Bias Detection
+      </div>
+      <div class="profile-menu-item" onclick="closeProfileModal();showToast('Keyboard shortcuts: N=Navigate, R=Run Screening, S=Search','info','⌨️')">
+        <span class="pm-icon">⌨️</span> Keyboard Shortcuts
+      </div>
+      <div class="profile-menu-sep"></div>
+      <div class="profile-menu-item" onclick="closeProfileModal();showAboutModal()">
+        <span class="pm-icon">ℹ️</span> About HireIQ
+      </div>
+      <div class="profile-menu-item" onclick="closeProfileModal();showToast('Documentation would open in a real deployment','info','📚')">
+        <span class="pm-icon">📚</span> Help & Documentation
+      </div>
+      <div class="profile-menu-item danger" onclick="logoutUser()">
+        <span class="pm-icon">🚪</span> Sign Out
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SETTINGS MODAL ══════════ -->
+<div class="settings-modal-overlay" id="settingsModal" onclick="if(event.target===this)closeSettingsModal()">
+  <div class="settings-modal">
+    <div class="settings-modal-header">
+      <div class="settings-modal-title">⚙️ Account Settings</div>
+      <button class="modal-close" onclick="closeSettingsModal()">✕</button>
+    </div>
+    <div class="settings-modal-body">
+      <div class="settings-section">
+        <div class="settings-section-title">Appearance</div>
+        <div class="settings-row">
+          <div>
+            <div class="settings-row-label">Light Mode</div>
+            <div class="settings-row-desc">Switch between dark and light theme</div>
+          </div>
+          <div class="toggle-switch" id="toggle-theme" onclick="toggleThemeFromSettings(this)"></div>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section-title">Profile</div>
+        <div class="settings-row">
+          <div>
+            <div class="settings-row-label">Full Name</div>
+            <div class="settings-row-desc">Displayed in the sidebar and reports</div>
+            <div class="settings-input-group" style="margin-top:8px">
+              <input class="settings-input" id="settingsName" value="HR Manager" placeholder="Your name"/>
+              <button class="settings-save-btn" onclick="saveName()">Save</button>
+            </div>
+          </div>
+        </div>
+        <div class="settings-row">
+          <div>
+            <div class="settings-row-label">Email Address</div>
+            <div class="settings-row-desc">Used for login and notifications</div>
+            <div class="settings-input-group" style="margin-top:8px">
+              <input class="settings-input" id="settingsEmail" value="hr@hireiq.com" placeholder="Email"/>
+              <button class="settings-save-btn" onclick="showToast('Email updated!','success','✅')">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section-title">Notifications</div>
+        <div class="settings-row">
+          <div>
+            <div class="settings-row-label">Email Notifications</div>
+            <div class="settings-row-desc">Receive updates when screening completes</div>
+          </div>
+          <div class="toggle-switch on" id="toggle-email" onclick="toggleSetting(this)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="app-container">
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <div class="logo-icon">🎯</div>
+        <div class="logo-text">Hire<span>IQ</span></div>
+      </div>
+    </div>
+
+    <div class="sidebar-nav">
+      <div class="nav-section-label">MAIN</div>
+      <div class="nav-item active" data-page="dashboard" onclick="navigate('dashboard', this)">
+        <span class="nav-icon">⚡</span> Dashboard
+      </div>
+      <div class="nav-item" data-page="upload" onclick="navigate('upload', this)">
+        <span class="nav-icon">📋</span> Upload Resumes
+        <span class="nav-badge" id="uploadBadge" style="display:none">0</span>
+      </div>
+      <div class="nav-item" data-page="jobs" onclick="navigate('jobs', this)">
+        <span class="nav-icon">💼</span> Job Descriptions
+        <span class="nav-badge" id="jobsBadge">2</span>
+      </div>
+
+      <div class="nav-section-label" style="margin-top:12px">ANALYSIS</div>
+      <div class="nav-item" data-page="screening" onclick="navigate('screening', this)">
+        <span class="nav-icon">▶</span> Screen & Rank
+      </div>
+      <div class="nav-item" data-page="candidates" onclick="navigate('candidates', this)">
+        <span class="nav-icon">👥</span> Candidates
+      </div>
+      <div class="nav-item" data-page="shortlisted" onclick="navigate('shortlisted', this)">
+        <span class="nav-icon">⭐</span> Shortlisted
+        <span class="nav-badge" id="shortlistBadge">0</span>
+      </div>
+      <div class="nav-item" data-page="insights" onclick="navigate('insights', this)">
+        <span class="nav-icon">📈</span> Insights
+      </div>
+
+      <div class="nav-section-label" style="margin-top:12px">SETTINGS</div>
+      <div class="nav-item" data-page="weights" onclick="navigate('weights', this)">
+        <span class="nav-icon">⚖️</span> Scoring Weights
+      </div>
+      <div class="nav-item" data-page="bias" onclick="navigate('bias', this)">
+        <span class="nav-icon">🛡️</span> Bias Detection
+      </div>
+    </div>
+
+    <div class="sidebar-footer" onclick="openProfileModal()">
+      <div class="user-avatar" id="sidebarAvatar">HR</div>
+      <div class="user-info">
+        <div class="user-name" id="sidebarName">HR Manager</div>
+        <div class="user-role">Admin</div>
+      </div>
+      <div style="margin-left:auto;color:var(--text3);font-size:14px;">⚙️</div>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+  <!-- ── MAIN CONTENT ── -->
+  <main class="main">
+    <header class="topbar">
+      <button class="sidebar-mobile-toggle" onclick="toggleSidebar()" title="Menu">
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+      </button>
+      <div class="topbar-left">
+        <div class="breadcrumb" id="topbarBreadcrumb">Overview of all activity</div>
+        <h1 class="topbar-title" id="topbarTitle">Dashboard</h1>
+      </div>
+      <div class="topbar-right">
+        <button class="topbar-home-btn" onclick="navigate('dashboard',document.querySelector('[data-page=dashboard]'))">🏠 Home</button>
+        <div class="topbar-search">
+          <span class="topbar-search-icon">🔍</span>
+          <input type="text" id="globalSearchInput" placeholder="Search candidates..." onkeydown="if(event.key==='Enter')handleGlobalSearch(this.value)"/>
+        </div>
+        <button class="topbar-icon-btn" id="notifBtn" onclick="openNotifPanel()" style="position:relative;">
+          🔔
+          <div class="notif-dot" id="notifDot" style="display:none"></div>
+        </button>
+        <button class="topbar-icon-btn" id="themeBtn" onclick="toggleTheme()">🌙</button>
+        <button class="topbar-run-btn" onclick="navigate('screening',document.querySelector('[data-page=screening]'))">▶ Run Screening</button>
+      </div>
+      <!-- Notification Panel -->
+      <div class="notif-panel" id="notifPanel">
+        <div class="notif-header">
+          <div style="font-weight:700;">Notifications</div>
+          <button class="btn btn-sm btn-secondary" onclick="clearNotifs()">Clear All</button>
+        </div>
+        <div class="notif-list" id="notifList"></div>
+        <div class="notif-footer">View all notifications</div>
+      </div>
+    </header>
+
+    <!-- ── PAGE: Dashboard ── -->
+    <div class="page" id="page-dashboard">
+      <!-- Welcome Banner -->
+      <div class="dashboard-welcome">
+        <div>
+          <h2 class="welcome-title">Welcome back 👋</h2>
+          <p class="welcome-sub">Here's what's happening with your hiring pipeline today.</p>
+        </div>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="stats-grid">
+        <div class="stat-card" style="--accent-color:var(--accent)">
+          <div class="stat-glow"></div>
+          <div class="stat-icon">📄</div>
+          <div class="stat-value" id="stat-resumes">0</div>
+          <div class="stat-label">Total Resumes</div>
+          <div class="stat-change up" id="stat-resumes-sub">↑ Ready to screen</div>
+        </div>
+        <div class="stat-card" style="--accent-color:var(--green)">
+          <div class="stat-glow" style="background:var(--green)"></div>
+          <div class="stat-icon">✅</div>
+          <div class="stat-value" id="stat-screened">0</div>
+          <div class="stat-label">Screened</div>
+          <div class="stat-change" id="stat-screened-pct">↑ 0%</div>
+        </div>
+        <div class="stat-card" style="--accent-color:var(--yellow)">
+          <div class="stat-glow" style="background:var(--yellow)"></div>
+          <div class="stat-icon">⭐</div>
+          <div class="stat-value" id="stat-shortlisted">0</div>
+          <div class="stat-label">Shortlisted</div>
+          <div class="stat-change" id="stat-shortlisted-pct">0 top matches</div>
+        </div>
+        <div class="stat-card" style="--accent-color:var(--accent3)">
+          <div class="stat-glow" style="background:var(--accent3)"></div>
+          <div class="stat-icon">💼</div>
+          <div class="stat-value" id="stat-jobs">2</div>
+          <div class="stat-label">Active Jobs</div>
+          <div class="stat-change up" id="jobCount">↑ Accepting applications</div>
+        </div>
+      </div>
+
+      <!-- Pipeline + Quick Actions -->
+      <div class="dash-bottom-grid">
+        <div class="card">
+          <div class="section-header">
+            <div>
+              <div class="section-title">Pipeline Activity</div>
+              <div class="section-subtitle">Last 7 days</div>
+            </div>
+          </div>
+          <div class="pipeline-chart-wrap" id="pipelineChart"></div>
+          <div class="pipeline-footer">
+            <span id="pipelinePeak" class="pipeline-peak-label">Peak: Thursday</span>
+            <span id="pipelineWeekTotal">Total uploads this week: <b id="pipelineTotal">23</b></span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-header" style="margin-bottom:18px;">
+            <div class="section-title">Quick Actions</div>
+          </div>
+          <div class="quick-actions-list">
+            <button class="qa-btn qa-primary" onclick="navigate('upload',document.querySelector('[data-page=upload]'))"><span>📤</span> Upload New Resumes</button>
+            <button class="qa-btn" onclick="navigate('screening',document.querySelector('[data-page=screening]'))"><span>🤖</span> Start AI Screening</button>
+            <button class="qa-btn" onclick="navigate('jobs',document.querySelector('[data-page=jobs]'))"><span>➕</span> Create Job Description</button>
+            <button class="qa-btn" onclick="navigate('insights',document.querySelector('[data-page=insights]'))"><span>📊</span> View Insights Report</button>
+          </div>
+          <div class="qa-footer">
+            <div class="qa-footer-row"><span class="qa-dot" style="background:var(--green)"></span>Last screening: <span id="lastScreeningTime">Never</span></div>
+            <div class="qa-footer-row"><span class="qa-dot" style="background:var(--accent)"></span>Next review: <a href="#" onclick="navigate('screening',document.querySelector('[data-page=screening]'));return false;" style="color:var(--accent2);text-decoration:none;">Schedule now</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top Candidates section (always visible) -->
+      <div id="dashTopCandidates" style="margin-top:20px;">
+        <div class="card">
+          <div class="section-header">
+            <div>
+              <div class="section-title">Top Candidates</div>
+              <div class="section-subtitle">Most recent screening results</div>
+            </div>
+            <button class="btn btn-sm btn-secondary" onclick="navigate('candidates',document.querySelector('[data-page=candidates]'))">View All →</button>
+          </div>
+          <div id="topCandidatesBody">
+            <div class="empty-state" style="padding:40px 20px;">
+              <div class="empty-icon" style="font-size:42px;margin-bottom:16px;">🎯</div>
+              <div class="empty-title">No candidates ranked yet</div>
+              <div class="empty-desc">Upload resumes, add a job description and run<br>screening to see ranked candidates here.</div>
+              <button class="btn btn-primary" style="margin-top:18px;" onclick="navigate('upload',document.querySelector('[data-page=upload]'))">Get Started →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGE: Upload ── -->
+    <div class="page" id="page-upload">
+      <div class="page-header">
+        <h1>Upload Resumes</h1>
+        <p>Drag & drop or select multiple resume files to begin processing.</p>
+      </div>
+      <div class="upload-layout">
+        <!-- Left: Drop Zone -->
+        <div class="upload-left">
+          <div class="upload-zone" id="uploadZone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave()" ondrop="handleDrop(event)" onclick="document.getElementById('fileInput').click()">
+            <div class="upload-icon">📋</div>
+            <div class="upload-title">Drop your resumes here</div>
+            <div class="upload-desc">or click to browse files</div>
+            <div class="upload-formats">
+              <span class="format-badge">PDF</span>
+              <span class="format-badge">DOCX</span>
+              <span class="format-badge">TXT</span>
+              <span class="format-badge">RTF</span>
+            </div>
+            <input type="file" id="fileInput" multiple style="display:none" onchange="handleFileSelect(this.files)"/>
+          </div>
+          <div id="fileList" style="display:none;flex-direction:column;gap:8px;margin-top:12px;"></div>
+          <div class="upload-action-bar">
+            <button class="btn btn-primary" id="processBtn" onclick="processFiles()">⚡ Process Files</button>
+            <button class="btn btn-secondary" onclick="clearFiles()">Clear All</button>
+          </div>
+          <div style="font-size:12px;color:var(--text3);margin-top:8px;" id="uploadQueueInfo">
+            <span id="queueCount">0</span> files queued · <span id="parsedCount">0</span> parsed
+          </div>
+        </div>
+        <!-- Right: Guidelines + Stats -->
+        <div class="upload-right">
+          <div class="card" style="margin-bottom:16px;">
+            <div class="section-title" style="margin-bottom:14px;">Upload Guidelines</div>
+            <div class="accordion">
+              <div class="accordion-item open">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                  <span>📄 Supported Formats</span>
+                  <span class="accordion-arrow">▲</span>
+                </div>
+                <div class="accordion-body">PDF, DOCX, TXT and RTF formats are supported. For best results, use text-based PDFs (not scanned images). Maximum file size: 5MB per file.</div>
+              </div>
+              <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                  <span>✅ Best Practices</span>
+                  <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-body">Ensure resumes contain clear section headings (Education, Experience, Skills). Structured formats improve parsing accuracy significantly.</div>
+              </div>
+              <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                  <span>🔒 Privacy & Data</span>
+                  <span class="accordion-arrow">▼</span>
+                </div>
+                <div class="accordion-body">All resume data is processed locally in your browser. No data is sent to external servers. You can clear all data at any time.</div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="section-title" style="margin-bottom:14px;">Processing Stats</div>
+            <div class="detail-row"><div class="detail-key">Files queued</div><div class="detail-val" id="statsQueued">0</div></div>
+            <div class="detail-row"><div class="detail-key">Successfully parsed</div><div class="detail-val" id="statsParsed">0</div></div>
+            <div class="detail-row"><div class="detail-key">Total resumes in DB</div><div class="detail-val" id="statsTotal">0</div></div>
+            <div class="detail-row" style="border:none"><div class="detail-key">Avg. parse time</div><div class="detail-val" id="statsAvgTime">~0.8s</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGE: Job Descriptions ── -->
+    <div class="page" id="page-jobs">
+      <div class="page-header">
+        <h1>Job Descriptions</h1>
+        <p>Define the roles you're hiring for to enable accurate AI matching.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="section-title" style="margin-bottom:18px;">Create New Job</div>
+          <div class="form-group">
+            <label class="form-label">Job Title</label>
+            <input class="form-input" id="jobTitle" placeholder="e.g. Senior Frontend Developer"/>
+          </div>
+          <div class="grid-2" style="gap:16px;">
+            <div class="form-group">
+              <label class="form-label">Department</label>
+              <select class="form-select" id="jobDept">
+                <option value="">Select Dept</option>
+                <option value="Engineering">Engineering</option>
+                <option value="Product">Product</option>
+                <option value="Design">Design</option>
+                <option value="Marketing">Marketing</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Experience Level</label>
+              <div class="select-pills" id="expLevel">
+                <div class="select-pill" onclick="togglePill(this,'expLevel')">Fresher</div>
+                <div class="select-pill active" onclick="togglePill(this,'expLevel')">Mid</div>
+                <div class="select-pill" onclick="togglePill(this,'expLevel')">Senior</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Required Skills (comma separated)</label>
+            <input class="form-input" id="jobSkills" placeholder="React, Node.js, TypeScript..."/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Job Description</label>
+            <textarea class="form-input" id="jobDesc" rows="4" placeholder="Briefly describe the role and requirements..."></textarea>
+          </div>
+          <button class="btn btn-primary" onclick="saveJob()" style="width:100%;justify-content:center;margin-top:10px;">
+            💼 Save Job Description
+          </button>
+        </div>
+
+        <div>
+          <div class="section-header" style="margin-bottom:14px;">
+            <div class="section-title">Active Positions</div>
+            <div id="jobCountLabel" style="font-size:12px;color:var(--text3)">2 active</div>
+          </div>
+          <div id="jobsList" style="display:flex;flex-direction:column;gap:12px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGE: Screening ── -->
+    <div class="page" id="page-screening">
+      <div class="page-header">
+        <h1>Screen & Rank</h1>
+        <p>Run the AI scoring engine to rank candidates for a specific position.</p>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:24px;">
+        <div class="card">
+          <div class="section-title" style="margin-bottom:18px;">Screening Configuration</div>
+          <div class="form-group">
+            <label class="form-label">Select Job Position</label>
+            <select class="form-select" id="screeningJob">
+              <option value="">Choose a job to screen for...</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Candidates to Screen</label>
+            <select class="form-select" id="screeningPool">
+              <option value="all">All uploaded resumes</option>
+              <option value="new">New only (unscreened)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Shortlist Top</label>
+            <div class="select-pills" id="shortlistCount">
+              <div class="select-pill" onclick="togglePill(this,'shortlistCount')">Top 3</div>
+              <div class="select-pill active" onclick="togglePill(this,'shortlistCount')">Top 5</div>
+              <div class="select-pill" onclick="togglePill(this,'shortlistCount')">Top 10</div>
+              <div class="select-pill" onclick="togglePill(this,'shortlistCount')">All</div>
+            </div>
+          </div>
+          <button class="btn btn-primary" id="runScreenBtn" onclick="runScreening()" style="width:100%;justify-content:center;margin-top:8px;">
+            ▶ Run AI Screening
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="section-title" style="margin-bottom:14px;">Screening Progress</div>
+          <div id="screeningStatus">
+            <div style="text-align:center;padding:24px 0;color:var(--text3);">
+              <div style="font-size:32px;margin-bottom:8px;">🤖</div>
+              <div>Configure settings and click Run to begin</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div id="screeningResults" style="display:none;">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Screening Results</div>
+            <div class="section-subtitle" id="screeningResultsSubtitle">0 candidates ranked</div>
+          </div>
+          <div class="section-actions">
+            <button class="btn btn-sm btn-secondary" onclick="exportResults()">📥 Export PDF</button>
+            <button class="btn btn-sm btn-secondary" onclick="exportCSV()">📊 Export CSV</button>
+          </div>
+        </div>
+        <div id="rankedCandidates" class="candidates-grid"></div>
+      </div>
+    </div>
+
+    <!-- ── PAGE: Candidates ── -->
+    <div class="page" id="page-candidates">
+      <div class="page-header">
+        <h1>All Candidates</h1>
+        <p>Browse, filter and compare all candidates in your database.</p>
+      </div>
+
+      <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center;">
+        <div class="search-box" style="flex:1;min-width:200px;">
+          <span class="search-icon">🔍</span>
+          <input class="form-input" placeholder="Search by name, skill, email..." id="candidateSearch" oninput="filterCandidates(this.value)" style="padding-left:34px;"/>
+        </div>
+        <select class="form-select" style="width:160px;" id="candidateFilter" onchange="filterCandidates()">
+          <option value="">All Jobs</option>
+        </select>
+        <select class="form-select" style="width:140px;" onchange="sortCandidates(this.value)">
+          <option value="score">Sort: Score</option>
+          <option value="name">Sort: Name</option>
+          <option value="date">Sort: Date</option>
+        </select>
+      </div>
+
+      <div id="allCandidates" class="candidates-grid">
+        <div class="empty-state">
+          <div class="empty-icon">👥</div>
+          <div class="empty-title">No candidates yet</div>
+          <div class="empty-desc">Upload resumes and run screening to populate your candidate database.</div>
+          <button class="btn btn-primary" onclick="navigate('upload', document.querySelector('[data-page=upload]'))">Upload Resumes →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGE: Insights ── -->
+    <div class="page" id="page-insights">
+      <div class="page-header">
+        <h1>Analytics & Insights</h1>
+        <p>Deep analysis of your candidate pool and hiring pipeline.</p>
+      </div>
+      <div id="insightsContent">
+        <div class="empty-state">
+          <div class="empty-icon">📊</div>
+          <div class="empty-title">Run screening to generate insights</div>
+          <div class="empty-desc">After screening candidates, rich analytics will appear here including skill gap analysis, score distributions, and hiring funnel metrics.</div>
+          <button class="btn btn-primary" onclick="navigate('screening', document.querySelector('[data-page=screening]'))">Go to Screening →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGE: Weights ── -->
+    <div class="page" id="page-weights">
+      <div class="page-header">
+        <h1>Scoring Weights</h1>
+        <p>Customize how each factor contributes to the final candidate score.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="section-title" style="margin-bottom:18px;">Adjust Factor Weights</div>
+          <div id="weightsSliders"></div>
+          <div class="divider"></div>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-primary" onclick="applyWeights()" style="flex:1;justify-content:center;">✅ Apply Weights</button>
+            <button class="btn btn-secondary" onclick="resetWeights()">↺ Reset</button>
+          </div>
+        </div>
+        <div>
+          <div class="card" style="margin-bottom:16px;">
+            <div class="section-title" style="margin-bottom:14px;">Weight Distribution</div>
+            <div id="weightDistribution"></div>
+          </div>
+          <div class="card">
+            <div class="section-title" style="margin-bottom:12px;">💡 Tips</div>
+            <div style="font-size:12px;color:var(--text2);line-height:1.8;">
+              <div>• <b style="color:var(--text)">Skill Match</b> — Most important for technical roles</div>
+              <div>• <b style="color:var(--text)">Experience</b> — Adjust based on seniority level</div>
+              <div>• <b style="color:var(--text)">Education</b> — Lower for experienced candidates</div>
+              <div>• <b style="color:var(--text)">Keyword Density</b> — Measures JD alignment</div>
+              <div>• <b style="color:var(--text)">Certifications</b> — Important for compliance roles</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGE: Bias Detection ── -->
+    <div class="page" id="page-bias">
+      <div class="page-header">
+        <h1>Bias Detection</h1>
+        <p>Identify and mitigate potential biases in your AI screening process.</p>
+      </div>
+
+      <div class="bias-alert">
+        <div class="bias-alert-icon">⚠️</div>
+        <div class="bias-alert-content">
+          <div class="bias-title">Bias Monitoring Active</div>
+          <div class="bias-desc">TalentAI continuously monitors for patterns that may indicate scoring bias. Run a screening session to generate a bias report. This system checks for university prestige bias, name-based bias, and over-indexing on company brand recognition.</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="section-title" style="margin-bottom:16px;">Bias Categories</div>
+          <div id="biasCategories">
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div class="file-item" style="flex-direction:column;align-items:flex-start;gap:8px;">
+                <div style="display:flex;width:100%;justify-content:space-between;align-items:center;">
+                  <div style="font-weight:600;font-size:13px;">🎓 University Prestige</div>
+                  <span class="chip chip-green">Low Risk</span>
+                </div>
+                <div class="progress-bar" style="width:100%;"><div class="progress-fill" style="width:15%;background:var(--green);"></div></div>
+                <div style="font-size:11px;color:var(--text3);">Score variance: 15% — Within acceptable range</div>
+              </div>
+              <div class="file-item" style="flex-direction:column;align-items:flex-start;gap:8px;">
+                <div style="display:flex;width:100%;justify-content:space-between;align-items:center;">
+                  <div style="font-weight:600;font-size:13px;">🏢 Company Brand</div>
+                  <span class="chip chip-yellow">Medium Risk</span>
+                </div>
+                <div class="progress-bar" style="width:100%;"><div class="progress-fill" style="width:42%;background:var(--yellow);"></div></div>
+                <div style="font-size:11px;color:var(--text3);">Score variance: 42% — Consider normalizing company weight</div>
+              </div>
+              <div class="file-item" style="flex-direction:column;align-items:flex-start;gap:8px;">
+                <div style="display:flex;width:100%;justify-content:space-between;align-items:center;">
+                  <div style="font-weight:600;font-size:13px;">📛 Name-based Bias</div>
+                  <span class="chip chip-green">Low Risk</span>
+                </div>
+                <div class="progress-bar" style="width:100%;"><div class="progress-fill" style="width:8%;background:var(--green);"></div></div>
+                <div style="font-size:11px;color:var(--text3);">Detected: 8% — System ignores name fields in scoring</div>
+              </div>
+              <div class="file-item" style="flex-direction:column;align-items:flex-start;gap:8px;">
+                <div style="display:flex;width:100%;justify-content:space-between;align-items:center;">
+                  <div style="font-weight:600;font-size:13px;">📅 Experience Gap</div>
+                  <span class="chip chip-red">High Risk</span>
+                </div>
+                <div class="progress-bar" style="width:100%;"><div class="progress-fill" style="width:68%;background:var(--red);"></div></div>
+                <div style="font-size:11px;color:var(--text3);">Gap score: 68% — Career gaps are over-penalized. Review weights.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-title" style="margin-bottom:16px;">Fairness Recommendations</div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-left">
+                <div class="timeline-dot" style="background:var(--red)"></div>
+                <div class="timeline-line"></div>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-title">Reduce experience gap penalty</div>
+                <div class="timeline-date">⚡ High Priority — Go to Scoring Weights</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-left">
+                <div class="timeline-dot" style="background:var(--yellow)"></div>
+                <div class="timeline-line"></div>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-title">Normalize company name weighting</div>
+                <div class="timeline-date">📌 Medium Priority</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-left">
+                <div class="timeline-dot" style="background:var(--green)"></div>
+                <div class="timeline-line"></div>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-title">University prestige check — Passed</div>
+                <div class="timeline-date">✅ No action needed</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-left">
+                <div class="timeline-dot" style="background:var(--green)"></div>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-title">Name anonymization — Active</div>
+                <div class="timeline-date">✅ Scoring is name-blind</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PAGE: Shortlisted ── -->
+    <div class="page" id="page-shortlisted">
+      <div class="page-header">
+        <h1>⭐ Shortlisted Candidates</h1>
+        <p>Candidates you've manually shortlisted for further review.</p>
+      </div>
+      <div id="shortlistedContent">
+        <div class="empty-state">
+          <div class="empty-icon">⭐</div>
+          <div class="empty-title">No shortlisted candidates yet</div>
+          <div class="empty-desc">Run a screening and click ⭐ Shortlist on any candidate to add them here.</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ── Candidate Detail Modal ── -->
+<div class="modal-overlay" id="candidateModal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="modalCandidateName">Candidate Detail</div>
+        <div class="modal-subtitle" id="modalCandidateMeta"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+      <button class="btn btn-danger" id="modalRemoveBtn" onclick="removeCurrentResume()" style="display:none">🗑️ Remove</button>
+      <button class="btn btn-primary" id="modalShortlistBtn" onclick="shortlistCandidate()">⭐ Shortlist</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Toast Container ── -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/app.js?v=8"></script>
+</body>
+</html>
